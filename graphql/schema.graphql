@@ -1,0 +1,108 @@
+
+type Query{
+    getMovieInfo:nMovieList!
+    getDetail(id:String!):MovieDetail!
+    getTvshowInfo:tvshowList!
+    getTvshowDetail(id:String!):TvshowDetial!
+    search(keyword:String!):searchResult!
+}
+
+type nMovieList{
+    nowPlaying:[nMovie]!
+    nowPopular:[nMovie]!
+    topRated:[nMovie]!
+    upcoming:[nMovie]!
+    compImageURL:String!
+    orgImageURL:String!
+}
+
+
+type nMovie{
+    popularity: String
+    video: String
+    vote_count: String
+    poster_path: String
+    id: String!
+    adult: Boolean
+    backdrop_path: String
+    original_language: String
+    original_title: String
+    genre_ids: [String]
+    title: String
+    vote_average: String
+    overview: String
+    release_date: String
+    runtime:String
+    genres:[genre]
+}
+
+type genre{
+    id:String
+    name:String
+}
+
+type Video {
+    id:String
+    key:String
+    name:String
+    site:String
+    size:Int
+    type:String
+}
+
+type MovieDetail{
+    movie:nMovie
+    video:[Video]
+    compImageURL:String!
+    orgImageURL:String!
+}
+
+type tvshowList{
+    tvOnTheAir:[Tvshow]
+    tvPopular:[Tvshow]
+    tvTopRated:[Tvshow]
+    compImageURL:String!
+    orgImageURL:String!
+}
+
+type Tvshow{
+    id:String
+    name:String
+    vote_average:String
+    original_name:String
+    overview:String
+    first_air_date:String
+    poster_path:String
+    backdrop_path:String
+    original_language:String
+    genres:[genre]
+    episode_run_time:[Int]
+    number_of_seasons:Int
+    seasons:[Season]
+}
+
+type TvshowDetial{
+    tvShow:Tvshow
+    video:[Video]
+    compImageURL:String!
+    orgImageURL:String!
+}
+
+
+
+type Season{
+    air_date:String
+    episode_count:String
+    id:String
+    name:String
+    overview:String
+    poster_path:String
+    season_number:String
+}
+
+type searchResult{
+    movieList:[nMovie]
+    tvShowList:[Tvshow]
+    compImageURL:String!
+    orgImageURL:String!
+}
